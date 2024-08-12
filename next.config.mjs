@@ -1,11 +1,10 @@
 import withPWA from 'next-pwa';
 
 const nextConfig = {
-  output: 'export',
-  pwa: {
-    disable: process.env.NODE_ENV === 'development', // Disable PWA in development mode
-    // No need for dest or swDest with the latest versions
-  },
 };
 
-export default withPWA(nextConfig);
+export default withPWA({
+  ...nextConfig,
+  dest: 'public', // Where the service worker file will be generated
+  disable: process.env.NODE_ENV === 'development', // Disable PWA in development mode
+});
